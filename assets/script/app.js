@@ -2,6 +2,8 @@ var introTab = "|-----------------|-----------------|-----------------|---------
 
 var introTabArray = introTab.split('');
 var slicedArray = [];
+var y = 0;
+var switchCount = 0;
 
 //Pulling 4 bars for each string
 for (var i = 0; i < introTabArray.length; i+=73) {
@@ -25,6 +27,11 @@ function removeStuff(arrayOfArrays) {
 		remove(currentArray, '?');
 		remove(currentArray, '|');
 	}
+
+	for (var i = 0; i < arrayOfArrays.length; i++) {
+		switchCount++;
+		buildARow(arrayOfArrays[i])
+	}
 }
 
 //Removes all instances from an array
@@ -38,25 +45,14 @@ function remove(arr, item) {
 
 //HTML Builder
 function buildARow(rowArray) {
-	for (var i = 0; i < 6; i++) {
-		switch(i) {
-			case 0: rowClass = 'eStringHigh'; break;
-			case 1: rowClass = 'bString'; break;
-			case 2: rowClass = 'gString'; break;
-			case 3: rowClass = 'dString'; break;
-			case 4: rowClass = 'aString'; break;
-			case 5: rowClass = 'eStringLow'; break;
-		}
-		var divRow = $('<div id="row" class="container-fluid no-gutter row string">')
-		$('body').prepend(divRow);
+		var divRow = $('<div id="row'+y+'" class="container-fluid no-gutter row string">')
+		$('body').append(divRow);
 
 		buildElements(splitIntoBars(rowArray));
-
-	}
 }
 
 function splitIntoBars(rowArray) {
-	debugger;
+
 	var barsArray = []
 	count = rowArray.length / 8;
 	for (var i = 0; i < count; i++) {
@@ -67,7 +63,16 @@ function splitIntoBars(rowArray) {
 }
 
 function buildElements(barsArray) {
+
 	for (var i = 0; i < barsArray.length; i++) {
+		switch(switchCount) {
+			case 1: rowClass = 'eStringHigh'; break;
+			case 2: rowClass = 'bString'; break;
+			case 3: rowClass = 'gString'; break;
+			case 4: rowClass = 'dString'; break;
+			case 5: rowClass = 'aString'; break;
+			case 6: rowClass = 'eStringLow'; switchCount = 0; break;
+		}
 		currentBar = barsArray[i];
 		debugger;
 		newList	= $('<ul class="list-inline col-xs-3">').addClass(rowClass);
@@ -80,13 +85,12 @@ function buildElements(barsArray) {
 				secondItem = $('<div class="col-xs-6">').html('<p>'+value+'</p>')
 				firstItem.append(secondItem);
 				newList.append(firstItem);
-				$('#row').append(newList);
+				$('#row'+y).append(newList);
 			}
 		}
 	}
+	y++;
 }
-
-
 
 
 
