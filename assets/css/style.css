@@ -1,0 +1,52 @@
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row div {
+	height: 5px;
+	font-family: Courier;
+	font-size: .9em;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.list-inline {
+ min-height: 15px;
+ margin-bottom: 0px;
+ border-left: 1px solid black;
+ border-right: 1px solid black;
+ padding-left: 1% !important;
+}
+
+.string {
+	border-bottom: 1px solid white;
+}
+
+.eStringHigh {
+	background-color: rgba(73,158,141,1);
+}
+
+.bString {
+	background-color: rgba(133,204,171,1);
+}
+
+.gString {
+	background-color: rgba(164,222,171,1);
+}
+
+.dString {
+	background-color: rgba(200,232,199,1);
+}
+
+.aString {
+	background-color: rgba(255,246,201,1);
+}
+
+.eStringLow {
+	background-color: rgba(255,254,236,1);
+}
